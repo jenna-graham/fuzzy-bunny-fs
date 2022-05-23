@@ -33,6 +33,12 @@ export async function deleteBunny(id) {
 }
 
 export async function createBunny(bunny) {
+    const response = await client.from('fuzzy_bunnies').insert(bunny);
+    if (response.error) {
+        console.error(response.error.message);
+    } else {
+        return response.data;
+    }
     // create a bunny using the bunny argument
 
     return checkError(response);
